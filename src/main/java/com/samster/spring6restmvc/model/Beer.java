@@ -46,7 +46,7 @@ public class Beer {
         private LocalDateTime createdDate;
         private LocalDateTime updateDate;
 
-        BeerBuilder() {
+        public BeerBuilder() {
         }
 
         public BeerBuilder id(UUID id) {
