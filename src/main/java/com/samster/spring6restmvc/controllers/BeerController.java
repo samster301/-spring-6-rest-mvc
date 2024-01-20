@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Slf4j
@@ -21,7 +22,7 @@ public class BeerController {
     private final BeerService beerService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Beer> listBeers(){
+    public Map<UUID,Beer> listBeers(){
         return beerService.listBeers();
     }
 

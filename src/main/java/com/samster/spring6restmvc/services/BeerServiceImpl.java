@@ -12,26 +12,9 @@ import java.util.*;
 @Slf4j
 @Service
 public class BeerServiceImpl implements BeerService {
-    @Override
-    public Beer getBeerbyId(UUID id) {
+    Map<UUID,Beer> beerMap = new HashMap<UUID,Beer>();
 
-        log.debug("Logging in Service");
-        return Beer.builder()
-                .id(id)
-                .version(1)
-                .beerName("Dog fish head")
-                .beerStyle(BeerStyle.PALE_ALE)
-                .upc("123456")
-                .price(new BigDecimal(12.99))
-                .quantityOnHand(120)
-                .createdDate(LocalDateTime.now())
-                .updateDate(LocalDateTime.now())
-                .build();
-    }
-
-    @Override
-    public List<Beer> listBeers() {
-        List<Beer> beerList = new LinkedList<Beer>();
+    public BeerServiceImpl() {
 
         Beer beer1 = new Beer.BeerBuilder()
                 .id(UUID.randomUUID())
@@ -69,10 +52,21 @@ public class BeerServiceImpl implements BeerService {
                 .updateDate(LocalDateTime.now())
                 .build();
 
-        beerList.add(beer1);
-        beerList.add(beer2);
-        beerList.add(beer3);
+        beerMap.put(beer1.getId(),beer1);
+        beerMap.put(beer2.getId(),beer2);
+        beerMap.put(beer3.getId(),beer3);
+    }
 
-        return  beerList;
+    @Override
+    public Beer getBeerbyId(UUID id) {
+
+        log.debug("Logging in Service");
+        return beerMap.get(id);
+    }
+
+    @Override
+    public Map<UUID,Beer> listBeers() {
+
+        return  beerMap;
     }
 }
